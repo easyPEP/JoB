@@ -1,4 +1,0 @@
-JoB
-===
-
-Javascript on backbone
