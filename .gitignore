@@ -1,7 +1,7 @@
 *.sassc
 .sass-cache
-dist/
-dist/*
+dist/**/**
+!dist/job.js
 bower_components
 bower_components/*
 node_modules
