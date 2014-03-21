@@ -1,26 +1,21 @@
 require.config
-  baseUrl: './src/test'
+  baseUrl: './dist/test'
   paths:
-    'text': '/bower_components/requirejs-text/text'
-    'jquery': '/bower_components/jquery/jquery'
-    'underscore': '/bower_components/underscore-amd/underscore'
-    'job': '/dev/app/job'
+    'dependencies': '/dist/dependencies'
+    'job': '/dist/job'
 
     'chai' : '/bower_components/chai/chai'
     'sinon-chai' : '/bower_components/sinon-chai/lib/sinon-chai'
     'sinon' : '/bower_components/sinon/index'
     'js-fixtures' : '/bower_components/js-fixtures/index'
-    'specs' : '/dev/test/specs'
-  #shim:
-  #  'backbone': ['jquery']
+    'specs' : '/dist/test/specs'
 
 require [
   'chai'
   'sinon-chai'
   'js-fixtures'
   'sinon'
-  'jquery'
-  'underscore'
+  'dependencies'
   'job'
 ], (chai, sinonChai, fixtures) ->
   mocha.setup 'bdd'
@@ -29,9 +24,11 @@ require [
   fixtures.path = './src/test/fixtures/'
 
   require [
-    './specs/base_spec'
+    './specs/form_spec'
+    './specs/parameter_spec'
     './specs/routing_helper_spec'
+    './specs/tag_spec'
+    './specs/translation_spec'
     './specs/url_helper_spec'
   ], ->
-
     mocha.run()

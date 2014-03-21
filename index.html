@@ -1,24 +1,373 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="./src/app/css/main.css" type="text/css">
-  </head>
-  <body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <title>JoB.js</title>
+  <link rel="stylesheet" type="text/css" href="/docs/stylesheets/docs.css">
+</head>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        </div>
-      </div>
-    </div>
+<body>
 
-    <script data-main="/src/app/main.js" src="/bower_components/requirejs/require.js"></script>
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-    </script>
-  </body>
-</html>
+  <div id="sidebar" class="interface">
+
+    <a class="toc_title" href="#">
+      JoB.js <span class="version">(0.0.1)</span>
+    </a>
+    <ul class="toc_section">
+      <li>» <a href="https://github.com/easyPEP/JoB" target="_new">GitHub Repository</a></li>
+    </ul>
+
+    <a class="toc_title" href="#introduction">
+      Introduction
+    </a>
+
+    <a class="toc_title" href="#Form">
+      Form.TagHelper
+    </a>
+    <ul class="toc_section">
+      <li>– <a href="#Form-buttonTag">buttonTag</a></li>
+      <li>– <a href="#Form-dateFieldTag">dateFieldTag</a></li>
+      <li>– <a href="#Form-datetimeFieldTag">datetimeFieldTag</a></li>
+      <li>– <a href="#Form-datetimeLocalFieldTag">datetimeLocalFieldTag</a></li>
+      <li>– <a href="#Form-emailFieldTag">emailFieldTag</a></li>
+      <li>– <a href="#Form-fileFieldTag">fileFieldTag</a></li>
+      <li>– <a href="#Form-formTag">formTag</a></li>
+      <li>– <a href="#Form-hiddenFieldTag">hiddenFieldTag</a></li>
+      <li>– <a href="#Form-imageSubmitTag">imageSubmitTag</a></li>
+      <li>– <a href="#Form-labelTag">labelTag</a></li>
+      <li>– <a href="#Form-monthFieldTag">monthFieldTag</a></li>
+      <li>– <a href="#Form-numberFieldTag">numberFieldTag</a></li>
+      <li>– <a href="#Form-passwordFieldTag">passwordFieldTag</a></li>
+      <li>– <a href="#Form-phoneFieldTag">phoneFieldTag</a></li>
+      <li>– <a href="#Form-radioButtonTag">radioButtonTag</a></li>
+      <li>– <a href="#Form-rangeFieldTag">rangeFieldTag</a></li>
+      <li>– <a href="#Form-searchFieldTag">searchFieldTag</a></li>
+      <li>– <a href="#Form-selectTag">selectTag</a></li>
+      <li>– <a href="#Form-submitTag">submitTag</a></li>
+      <li>– <a href="#Form-telephoneFieldTag">telephoneFieldTag</a></li>
+      <li>– <a href="#Form-textAreaTag">textAreaTag</a></li>
+      <li>– <a href="#Form-textFieldTag">textFieldTag</a></li>
+      <li>– <a href="#Form-timeFieldTag">timeFieldTag</a></li>
+      <li>– <a href="#Form-urlFieldTag">urlFieldTag</a></li>
+      <li>– <a href="#Form-utf8EnforcerTag">utf8EnforcerTag</a></li>
+      <li>– <a href="#Form-weekFieldTag">weekFieldTag</a></li>
+    </ul>
+
+    <a class="toc_title" href="#Form">
+      Form.OptionsHelper
+    </a>
+    <ul class="toc_section">
+      <li>– <a href="#Form-optionsFromCollectionForSelect">optionsFromCollectionForSelect</a></li>
+      <li>– <a href="#Form-optionsForSelect">optionsForSelect</a></li>
+    </ul>
+
+    <a class="toc_title" href="#changelog">
+      Change Log
+    </a>
+
+  </div>
+
+  <div class="container">
+
+    <h1 class="project-name"> - JoB<small>.js</small> - </h1>
+
+    <p>
+      JoB is an an Javascript library running on Backbone to deliver some easy Rails-Style view helpers.
+    </p>
+
+    <h2 id="introduction">Introduction</h2>
+
+    <p>
+      WRITE SOME INTRO
+    </p>
+
+    <h2 id="Form">Setup</h2>
+
+    <p>
+      Make the helper available:
+    </p>
+
+<pre>
+window.helper = new JoB.Form.TagHelper()
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-buttonTag">
+  <b class="header">buttonTag</b><code>helper.buttonTag(content, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.buttonTag("Save");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-dateFieldTag">
+  <b class="header">dateFieldTag</b><code>helper.dateFieldTag(content, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.dateFieldTag("user", "birthday");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-datetimeLocalFieldTag">
+  <b class="header">datetimeLocalFieldTag</b><code>not implemented</code>
+</p>
+
+<!-- EXAMPLE -->
+<p id="Form-datetimeFieldTag">
+  <b class="header">datetimeFieldTag</b><code>helper.datetimeFieldTag(content, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.datetimeFieldTag("user", "birthday");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-emailFieldTag">
+  <b class="header">emailFieldTag</b><code>helper.emailFieldTag(ressourceName, fieldName, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.emailFieldTag("user", "email");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-fileFieldTag">
+  <b class="header">fileFieldTag</b><code>helper.fileFieldTag(ressourceName, fieldName, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.fileFieldTag("user", "avatars", {multiple: true});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-formTag">
+  <b class="header">formTag</b><code>not implemented</code>
+</p>
+
+<!-- EXAMPLE -->
+<p id="Form-hiddenFieldTag">
+  <b class="header">hiddenFieldTag</b><code>helper.hiddenFieldTag(ressourceName, fieldName, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.hiddenFieldTag("user", "account_id");
+</pre>
+
+
+<!-- EXAMPLE -->
+<p id="Form-imageSubmitTag">
+  <b class="header">imageSubmitTag</b><code>helper.imageSubmitTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.imageSubmitTag("/docs/images/arrows.png");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-labelTag">
+  <b class="header">labelTag</b><code>helper.labelTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.labelTag("email", "E-Mail", {css: {color: '#aaa'}});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-monthFieldTag">
+  <b class="header">monthFieldTag</b><code>helper.monthFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.monthFieldTag("user", "birthday");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-numberFieldTag">
+  <b class="header">numberFieldTag</b><code>helper.numberFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.numberFieldTag("apples", "quantity", {min: 3});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-passwordFieldTag">
+  <b class="header">passwordFieldTag</b><code>helper.passwordFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.passwordFieldTag("user", "password");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-phoneFieldTag">
+  <b class="header">phoneFieldTag</b><code>helper.phoneFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.phoneFieldTag("user", "mobile");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-radioButtonTag">
+  <b class="header">radioButtonTag</b><code>helper.radioButtonTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.radioButtonTag("user", "gender", true, {value: 'male'});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-rangeFieldTag">
+  <b class="header">rangeFieldTag</b><code>helper.rangeFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.rangeFieldTag("user", "gender", {onchange: "console.log(this.value)"});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-searchFieldTag">
+  <b class="header">searchFieldTag</b><code>helper.searchFieldTag(src, [htmlOptions])</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+helper.searchFieldTag("user", "gender");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-selectTag">
+  <b class="header">selectTag</b><code>helper.selectTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.selectTag("user", "gender",
+  optionHelper.optionsForSelect(
+    [['m','Male'],['f','Female']], 'f'
+  )
+);
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-submitTag">
+  <b class="header">submitTag</b><code>helper.submitTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+</p>
+<pre class="runnable">
+helper.submitTag("Save changes");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-telephoneFieldTag">
+  <b class="header">telephoneFieldTag</b><code>alias for phoneFieldTag</code>
+</p>
+
+<!-- EXAMPLE -->
+<p id="Form-textAreaTag">
+  <b class="header">textAreaTag</b><code>helper.textAreaTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.textAreaTag("user", "comment");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-textFieldTag">
+  <b class="header">textFieldTag</b><code>helper.textFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.textFieldTag("user", "name");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-timeFieldTag">
+  <b class="header">timeFieldTag</b><code>helper.timeFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.timeFieldTag("restaurant", "shopping_hours_from", {value: "10:00"});
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-urlFieldTag">
+  <b class="header">urlFieldTag</b><code>helper.urlFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.urlFieldTag("restaurant", "domain");
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-utf8EnforcerTag">
+  <b class="header">utf8EnforcerTag</b><code>not implemented</code>
+</p>
+
+<!-- EXAMPLE -->
+<p id="Form-weekFieldTag">
+  <b class="header">weekFieldTag</b><code>helper.weekFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
+  <br>
+  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
+</p>
+<pre class="runnable">
+helper.weekFieldTag("restaurant", "domain");
+</pre>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script src="/dist/dependencies.js"></script><script src="/dist/job.js"></script>
+
+<script>
+  // Set up the "play" buttons for each runnable code example.
+  $(function() {
+    window.helper = new JoB.Form.TagHelper()
+    window.optionHelper = new JoB.Form.OptionsHelper()
+    $('.runnable').each(function() {
+      var code = this;
+      var button   = '<div class="run" title="Run"></div>';
+      var output   = '<div class="output">output</div>';
+      var htmlText = '<div class="html-text">html-text</div>';
+      $(button).insertBefore(code).bind('click', function(){
+        html = eval($(code).html());
+        string = $("<div/>").html(html)
+        $(output)
+          .html('<strong>Result:</strong><br/>')
+            .append(string)
+              .insertAfter(code)
+        string = $("<div/>").text(html)
+        $(htmlText)
+          .html('<strong>Code:</strong><br/>')
+            .append(string)
+              .insertAfter(code)
+      });
+    });
+  });
+</script>
+
+</body></html>
