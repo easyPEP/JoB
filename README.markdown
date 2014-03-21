@@ -1,6 +1,6 @@
 # JoB
 
-Javascript on backbone
+Rails inspired helpers library for **Javascript**.
 
 # Development
 
