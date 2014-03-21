@@ -13,7 +13,7 @@
 
   <div id="sidebar" class="interface">
 
-    <a class="toc_title" href="#">
+    <a class="toc_title" href="/">
       JoB.js <span class="version">(0.0.1)</span>
     </a>
     <ul class="toc_section">
@@ -23,6 +23,13 @@
     <a class="toc_title" href="#introduction">
       Introduction
     </a>
+
+    <a class="toc_title" href="#UrlHelper">
+      JoB.Lib.UrlHelper
+    </a>
+    <ul class="toc_section">
+      <li>– <a href="#Form-linkTo">linkTo</a></li>
+    </ul>
 
     <a class="toc_title" href="#Form">
       Form.TagHelper
@@ -74,21 +81,45 @@
 
     <h1 class="project-name"> - JoB<small>.js</small> - </h1>
 
-    <p>
-      JoB is an an Javascript library running on Backbone to deliver some easy Rails-Style view helpers.
-    </p>
-
     <h2 id="introduction">Introduction</h2>
 
     <p>
-      WRITE SOME INTRO
+      Rails inspired helpers library for <b>Javascript</b>.
     </p>
 
-    <h2 id="Form">Form.TagHelper Setup</h2>
+<!--
+  ////////////////////////////////////
+  ////////////////////////////////////
+  JoB.Lib.UrlHelper
+-->
 
-    <p>
-      Make the helper available:
-    </p>
+<h2 id="UrlHelper">JoB.Lib.UrlHelper Setup</h2>
+
+<p>
+  Make the helper available:
+</p>
+
+<pre>
+window.urlHelper = new JoB.Lib.UrlHelper()
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-linkTo">
+  <b class="header">linkTo</b><code>helper.linkTo(body, url, htmlOptions = {})</code>
+  <br>
+  Creates a <b>button</b> element that defines a submit button.
+</p>
+<pre class="runnable">
+urlHelper.linkTo("google.com", "https://www.google.de/",
+  {target: '_new'}
+);
+</pre>
+
+<h2 id="Form">Form.TagHelper Setup</h2>
+
+<p>
+  Make the helper available:
+</p>
 
 <pre>
 window.helper = new JoB.Form.TagHelper()
@@ -344,7 +375,6 @@ helper.weekFieldTag("restaurant", "domain");
   JoB.Form.OptionsHelper
 -->
 
-
 <h2 id="OptionsHelper">JoB.Form.OptionsHelper Setup</h2>
 
 <p>
@@ -393,6 +423,7 @@ optionHelper.optionsForSelect(options, options[1]);
 <script>
   // Set up the "play" buttons for each runnable code example.
   $(function() {
+    window.urlHelper = new JoB.Lib.UrlHelper()
     window.helper = new JoB.Form.TagHelper()
     window.optionHelper = new JoB.Form.OptionsHelper()
     $('.runnable').each(function() {
