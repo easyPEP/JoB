@@ -56,7 +56,7 @@
       <li>– <a href="#Form-weekFieldTag">weekFieldTag</a></li>
     </ul>
 
-    <a class="toc_title" href="#Form">
+    <a class="toc_title" href="#OptionsHelper">
       Form.OptionsHelper
     </a>
     <ul class="toc_section">
@@ -84,7 +84,7 @@
       WRITE SOME INTRO
     </p>
 
-    <h2 id="Form">Setup</h2>
+    <h2 id="Form">Form.TagHelper Setup</h2>
 
     <p>
       Make the helper available:
@@ -338,6 +338,53 @@ helper.urlFieldTag("restaurant", "domain");
 helper.weekFieldTag("restaurant", "domain");
 </pre>
 
+<!--
+  ////////////////////////////////////
+  ////////////////////////////////////
+  JoB.Form.OptionsHelper
+-->
+
+
+<h2 id="OptionsHelper">JoB.Form.OptionsHelper Setup</h2>
+
+<p>
+  Make the helper available:
+</p>
+
+<pre>
+window.optionHelper = new JoB.Form.OptionsHelper()
+</pre>
+
+
+<!-- EXAMPLE -->
+<p id="Form-optionsFromCollectionForSelect">
+  <b class="header">optionsFromCollectionForSelect</b><code>optionHelper.optionsFromCollectionForSelect(collection, valueMethod = 'id', textMethod = 'name', selected = null)</code>
+</p>
+<pre class="runnable">
+models = [
+  new Backbone.Model({id: 1, name: 'Ruby'}),
+  new Backbone.Model({id: 2, name: 'Javascript'})
+]
+optionHelper.optionsFromCollectionForSelect(
+  new Backbone.Collection(models),
+  'id',
+  'name',
+  models[1]
+);
+</pre>
+
+<!-- EXAMPLE -->
+<p id="Form-optionsForSelect">
+  <b class="header">optionsForSelect</b><code>optionHelper.optionsForSelect(collectioncollection, selected=null)</code>
+</p>
+<pre class="runnable">
+options = ['yes', 'no'];
+optionHelper.optionsForSelect(options, options[1]);
+
+options = [['1', 'yes'], ['0', 'no']];
+optionHelper.optionsForSelect(options, options[1]);
+</pre>
+
 </div>
 
 <!-- JAVASCRIPT -->
@@ -354,17 +401,20 @@ helper.weekFieldTag("restaurant", "domain");
       var output   = '<div class="output">output</div>';
       var htmlText = '<div class="html-text">html-text</div>';
       $(button).insertBefore(code).bind('click', function(){
+
         html = eval($(code).html());
-        string = $("<div/>").html(html)
-        $(output)
-          .html('<strong>Result:</strong><br/>')
-            .append(string)
-              .insertAfter(code)
-        string = $("<div/>").text(html)
-        $(htmlText)
-          .html('<strong>Code:</strong><br/>')
-            .append(string)
-              .insertAfter(code)
+        if (html) {
+          string = $("<div/>").html(html)
+          $(output)
+            .html('<strong>Result:</strong><br/>')
+              .append(string)
+                .insertAfter(code)
+          string = $("<div/>").text(html)
+          $(htmlText)
+            .html('<strong>Code:</strong><br/>')
+              .append(string)
+                .insertAfter(code)
+        };
       });
     });
   });

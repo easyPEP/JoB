@@ -20,7 +20,7 @@ class JoB.Form.OptionsHelper
       value: element, content: element
 
   # Collection is currently a backbone collection or simple hash
-  optionsFromCollectionForSelect: (collection, valueMethod, textMethod, selected=null) ->
+  optionsFromCollectionForSelect: (collection, valueMethod = 'id', textMethod = 'name', selected=null) ->
     _collection = []
     _selected = []
     models = if collection? and _.isFunction(collection.toJSON) then collection.toJSON() else collection
@@ -254,7 +254,6 @@ class JoB.Form.TagHelper
 # Form Builder can be used to provide templates for
 # input fields and wrappers.
 class JoB.Form.FormBuilder
-
   # fields_for renders a label and control group. It uses the
   # bootstrap template by default :)
   # <%- @input('account', 'name') %>
