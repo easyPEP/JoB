@@ -1,8 +1,4 @@
 // Stuff to fix after running bower install:
-// bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins:363: error: non-terminal statement or declaration must end with ';'
-// twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins:370: error: non-terminal statement or declaration must end with ';'
-// bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap/glyphicons:13: error: non-terminal statement or declaration must end with ';'
-// bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap/glyphicons:13: error: non-terminal statement or declaration must end with ';'
 
 var gulp         = require('gulp'),
     gutil        = require('gulp-util'),
