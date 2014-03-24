@@ -117,7 +117,7 @@ JoB.Form.OptionsHelper = (function() {
     return _.indexOf(_.flatten(new Array([selected])), value) >= 0;
   };
 
-  OptionsHelper.prototype._optionTags = function(content, htmlAttributes) {
+  OptionsHelper.prototype._optionTag = function(content, htmlAttributes) {
     return new JoB.Lib.Tag().contentTag('option', content, htmlAttributes);
   };
 
@@ -176,7 +176,7 @@ JoB.Form.OptionsHelper = (function() {
         htmlAttributes = {};
         htmlAttributes.value = optionTextAndValue.value;
         htmlAttributes.selected = _this._selected(optionTextAndValue.value, selected) ? true : false;
-        return _this._optionTags(optionTextAndValue.content, htmlAttributes);
+        return _this._optionTag(optionTextAndValue.content, htmlAttributes);
       };
     })(this));
   };
@@ -194,13 +194,25 @@ JoB.Form.TagHelper = (function() {
     return "" + (this.base.ressourceName.toLowerCase()) + "[" + (this.base.fieldName.toLowerCase()) + "]";
   };
 
-  TagHelper.prototype._idAttribute = function() {
-    return "" + (this.base.ressourceName.toLowerCase()) + "_" + (this.base.fieldName.toLowerCase());
+  TagHelper.prototype._idAttribute = function(ressourceName, fieldName) {
+    if (ressourceName == null) {
+      ressourceName = null;
+    }
+    if (fieldName == null) {
+      fieldName = null;
+    }
+    if (ressourceName == null) {
+      ressourceName = ressourceName || this.base.ressourceName;
+    }
+    if (fieldName == null) {
+      fieldName = fieldName || this.base.fieldName;
+    }
+    return "" + (ressourceName.toLowerCase()) + "_" + (fieldName.toLowerCase());
   };
 
   TagHelper.prototype._classAttribute = function() {
     var _class;
-    _class = "form-control";
+    _class = "";
     if (this.base.type != null) {
       _class += " " + this.base.type;
     }
@@ -218,13 +230,13 @@ JoB.Form.TagHelper = (function() {
 
   TagHelper.prototype._valueAttribute = function() {
     var value;
-    value = _.isString(this.options.value) || _.isBoolean(this.options.value) ? this.options.value : _.isObject(this.base.ressource) ? _.isFunction(this.base.ressource.get) ? this.base.ressource.get(this.base.fieldName) : this.base.ressource[this.base.fieldName] : "";
+    value = _.isEmpty("" + this.options.value) === !true ? this.options.value : _.isObject(this.base.ressource) ? _.isFunction(this.base.ressource.get) ? this.base.ressource.get(this.base.fieldName) : this.base.ressource[this.base.fieldName] : "";
     return value;
   };
 
   TagHelper.prototype._htmlAttributes = function() {
     var attributes;
-    attributes = _.extend(this.options, {
+    attributes = _.defaults(_.clone(this.options), {
       "class": this._classAttribute(),
       name: this._nameAttribute(),
       id: this._idAttribute(),
@@ -235,7 +247,7 @@ JoB.Form.TagHelper = (function() {
     if (_.isEmpty(attributes.placeholder)) {
       delete attributes.placeholder;
     }
-    if (_.isEmpty(attributes.value)) {
+    if (_.isEmpty("" + attributes.value)) {
       delete attributes.value;
     }
     return attributes;
@@ -249,10 +261,27 @@ JoB.Form.TagHelper = (function() {
     return new JoB.Lib.Tag().contentTag(tagName, content, options);
   };
 
+  TagHelper.prototype._radioButtonTag = function() {
+    var htmlAttributes;
+    if (_.isEmpty(this.options["class"])) {
+      this.options["class"] = "radio";
+    }
+    htmlAttributes = this._htmlAttributes();
+    return new JoB.Lib.Tag().contentTag('input', null, htmlAttributes);
+  };
+
+  TagHelper.prototype._checkBoxTag = function() {
+    var htmlAttributes;
+    if (_.isEmpty(this.options["class"])) {
+      this.options["class"] = "checkbox";
+    }
+    htmlAttributes = this._htmlAttributes();
+    return new JoB.Lib.Tag().contentTag('input', null, htmlAttributes);
+  };
+
   TagHelper.prototype._selectTag = function(optionTags) {
     var attributes;
     attributes = this._htmlAttributes();
-    delete attributes.type;
     delete attributes.type;
     if (attributes.multiple) {
       attributes.name = attributes.name + "[]";
@@ -276,7 +305,7 @@ JoB.Form.TagHelper = (function() {
 
   TagHelper.prototype._setOptions = function(options) {
     this.options = null;
-    return this.options = _.defaults(options, this.defaults);
+    return this.options = _.defaults(options, _.clone(this.defaults));
   };
 
   TagHelper.prototype._setup = function(ressourceName, fieldName, inputType, options) {
@@ -295,6 +324,18 @@ JoB.Form.TagHelper = (function() {
       content: content
     }, options);
     return this._genericTag('button', this.options.content, this.options);
+  };
+
+  TagHelper.prototype.checkBoxTag = function(ressourceName, fieldName, checked, options) {
+    if (options == null) {
+      options = {};
+    }
+    options = _.defaults(options, {});
+    if (checked) {
+      options.checked = 'checked';
+    }
+    this._setup(ressourceName, fieldName, 'checkbox', options);
+    return this._checkBoxTag();
   };
 
   TagHelper.prototype.dateFieldTag = function(ressourceName, fieldName, options) {
@@ -357,15 +398,14 @@ JoB.Form.TagHelper = (function() {
     return this._genericTag('input', null, this.options);
   };
 
-  TagHelper.prototype.labelTag = function(forName, content, options) {
+  TagHelper.prototype.labelTag = function(ressourceName, fieldName, content, options) {
     if (options == null) {
       options = {};
     }
     this.options = _.defaults(options, {
-      "for": forName,
-      content: content
+      "for": this._idAttribute(ressourceName, fieldName)
     });
-    return this._genericTag('label', this.options.content, this.options);
+    return this._genericTag('label', content, this.options);
   };
 
   TagHelper.prototype.monthFieldTag = function(ressourceName, fieldName, options) {
@@ -421,7 +461,7 @@ JoB.Form.TagHelper = (function() {
       checked: checked
     });
     this._setup(ressourceName, fieldName, 'radio', options);
-    return this._inputTag();
+    return this._radioButtonTag();
   };
 
   TagHelper.prototype.rangeFieldTag = function(ressourceName, fieldName, options) {

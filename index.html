@@ -36,6 +36,7 @@
     </a>
     <ul class="toc_section">
       <li>– <a href="#Form-buttonTag">buttonTag</a></li>
+      <li>– <a href="#Form-checkBoxTag">checkBoxTag</a></li>
       <li>– <a href="#Form-dateFieldTag">dateFieldTag</a></li>
       <li>– <a href="#Form-datetimeFieldTag">datetimeFieldTag</a></li>
       <li>– <a href="#Form-datetimeLocalFieldTag">datetimeLocalFieldTag</a></li>
@@ -107,7 +108,6 @@ window.urlHelper = new JoB.Lib.UrlHelper()
 <p id="Form-linkTo">
   <b class="header">linkTo</b><code>helper.linkTo(body, url, htmlOptions = {})</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 urlHelper.linkTo("google.com", "https://www.google.de/",
@@ -129,17 +129,24 @@ window.helper = new JoB.Form.TagHelper()
 <p id="Form-buttonTag">
   <b class="header">buttonTag</b><code>helper.buttonTag(content, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.buttonTag("Save");
 </pre>
 
 <!-- EXAMPLE -->
+<p id="Form-checkBoxTag">
+  <b class="header">checkBoxTag</b><code>helper.checkBoxTag(src, [htmlOptions])</code>
+  <br>
+</p>
+<pre class="runnable">
+helper.checkBoxTag("user", "gender", true, {value: 1});
+</pre>
+
+<!-- EXAMPLE -->
 <p id="Form-dateFieldTag">
   <b class="header">dateFieldTag</b><code>helper.dateFieldTag(content, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.dateFieldTag("user", "birthday");
@@ -154,7 +161,6 @@ helper.dateFieldTag("user", "birthday");
 <p id="Form-datetimeFieldTag">
   <b class="header">datetimeFieldTag</b><code>helper.datetimeFieldTag(content, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.datetimeFieldTag("user", "birthday");
@@ -164,7 +170,6 @@ helper.datetimeFieldTag("user", "birthday");
 <p id="Form-emailFieldTag">
   <b class="header">emailFieldTag</b><code>helper.emailFieldTag(ressourceName, fieldName, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.emailFieldTag("user", "email");
@@ -174,7 +179,6 @@ helper.emailFieldTag("user", "email");
 <p id="Form-fileFieldTag">
   <b class="header">fileFieldTag</b><code>helper.fileFieldTag(ressourceName, fieldName, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.fileFieldTag("user", "avatars", {multiple: true});
@@ -189,7 +193,6 @@ helper.fileFieldTag("user", "avatars", {multiple: true});
 <p id="Form-hiddenFieldTag">
   <b class="header">hiddenFieldTag</b><code>helper.hiddenFieldTag(ressourceName, fieldName, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.hiddenFieldTag("user", "account_id");
@@ -200,7 +203,6 @@ helper.hiddenFieldTag("user", "account_id");
 <p id="Form-imageSubmitTag">
   <b class="header">imageSubmitTag</b><code>helper.imageSubmitTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.imageSubmitTag("/docs/images/arrows.png");
@@ -210,17 +212,15 @@ helper.imageSubmitTag("/docs/images/arrows.png");
 <p id="Form-labelTag">
   <b class="header">labelTag</b><code>helper.labelTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
-helper.labelTag("email", "E-Mail", {css: {color: '#aaa'}});
+helper.labelTag("user", "email", "E-Mail", {css: {color: '#aaa'}});
 </pre>
 
 <!-- EXAMPLE -->
 <p id="Form-monthFieldTag">
   <b class="header">monthFieldTag</b><code>helper.monthFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.monthFieldTag("user", "birthday");
@@ -230,7 +230,6 @@ helper.monthFieldTag("user", "birthday");
 <p id="Form-numberFieldTag">
   <b class="header">numberFieldTag</b><code>helper.numberFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.numberFieldTag("apples", "quantity", {min: 3});
@@ -240,7 +239,6 @@ helper.numberFieldTag("apples", "quantity", {min: 3});
 <p id="Form-passwordFieldTag">
   <b class="header">passwordFieldTag</b><code>helper.passwordFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.passwordFieldTag("user", "password");
@@ -250,7 +248,6 @@ helper.passwordFieldTag("user", "password");
 <p id="Form-phoneFieldTag">
   <b class="header">phoneFieldTag</b><code>helper.phoneFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.phoneFieldTag("user", "mobile");
@@ -260,7 +257,6 @@ helper.phoneFieldTag("user", "mobile");
 <p id="Form-radioButtonTag">
   <b class="header">radioButtonTag</b><code>helper.radioButtonTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.radioButtonTag("user", "gender", true, {value: 'male'});
@@ -270,7 +266,6 @@ helper.radioButtonTag("user", "gender", true, {value: 'male'});
 <p id="Form-rangeFieldTag">
   <b class="header">rangeFieldTag</b><code>helper.rangeFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.rangeFieldTag("user", "gender", {onchange: "console.log(this.value)"});
@@ -280,7 +275,6 @@ helper.rangeFieldTag("user", "gender", {onchange: "console.log(this.value)"});
 <p id="Form-searchFieldTag">
   <b class="header">searchFieldTag</b><code>helper.searchFieldTag(src, [htmlOptions])</code>
   <br>
-  Creates a <b>button</b> element that defines a submit button.
 </p>
 <pre class="runnable">
 helper.searchFieldTag("user", "gender");
@@ -318,7 +312,6 @@ helper.submitTag("Save changes");
 <p id="Form-textAreaTag">
   <b class="header">textAreaTag</b><code>helper.textAreaTag(ressourceName, fieldName, optionTags = null, options={})</code>
   <br>
-  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
 </p>
 <pre class="runnable">
 helper.textAreaTag("user", "comment");
@@ -328,7 +321,6 @@ helper.textAreaTag("user", "comment");
 <p id="Form-textFieldTag">
   <b class="header">textFieldTag</b><code>helper.textFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
   <br>
-  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
 </p>
 <pre class="runnable">
 helper.textFieldTag("user", "name");
@@ -338,7 +330,6 @@ helper.textFieldTag("user", "name");
 <p id="Form-timeFieldTag">
   <b class="header">timeFieldTag</b><code>helper.timeFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
   <br>
-  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
 </p>
 <pre class="runnable">
 helper.timeFieldTag("restaurant", "shopping_hours_from", {value: "10:00"});
@@ -348,7 +339,6 @@ helper.timeFieldTag("restaurant", "shopping_hours_from", {value: "10:00"});
 <p id="Form-urlFieldTag">
   <b class="header">urlFieldTag</b><code>helper.urlFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
   <br>
-  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
 </p>
 <pre class="runnable">
 helper.urlFieldTag("restaurant", "domain");
@@ -363,7 +353,6 @@ helper.urlFieldTag("restaurant", "domain");
 <p id="Form-weekFieldTag">
   <b class="header">weekFieldTag</b><code>helper.weekFieldTag(ressourceName, fieldName, optionTags = null, options={})</code>
   <br>
-  Check <b>optionsFromCollectionForSelect</b> or <b>optionsForSelect</b> for generating options tags
 </p>
 <pre class="runnable">
 helper.weekFieldTag("restaurant", "domain");

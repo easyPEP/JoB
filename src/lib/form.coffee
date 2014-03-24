@@ -10,7 +10,7 @@ class JoB.Form.OptionsHelper
   _selected: (value, selected) ->
     _.indexOf(_.flatten(new Array([selected])), value) >= 0
 
-  _optionTags: (content, htmlAttributes) ->
+  _optionTag: (content, htmlAttributes) ->
     new JoB.Lib.Tag().contentTag('option', content, htmlAttributes)
 
   _optionTextAndValue: (element) ->
@@ -43,7 +43,7 @@ class JoB.Form.OptionsHelper
       htmlAttributes          = {}
       htmlAttributes.value    = optionTextAndValue.value
       htmlAttributes.selected = if @_selected(optionTextAndValue.value, selected) then true else false
-      @_optionTags(optionTextAndValue.content, htmlAttributes)
+      @_optionTag(optionTextAndValue.content, htmlAttributes)
 
 # requires JoB.lib.Translation
 class JoB.Form.TagHelper
@@ -70,11 +70,13 @@ class JoB.Form.TagHelper
   _nameAttribute: () ->
     "#{@base.ressourceName.toLowerCase()}[#{@base.fieldName.toLowerCase()}]"
 
-  _idAttribute: () ->
-    "#{@base.ressourceName.toLowerCase()}_#{@base.fieldName.toLowerCase()}"
+  _idAttribute: (ressourceName = null, fieldName = null) ->
+    ressourceName ?= ressourceName || @base.ressourceName
+    fieldName ?= fieldName || @base.fieldName
+    "#{ressourceName.toLowerCase()}_#{fieldName.toLowerCase()}"
 
   _classAttribute: () ->
-    _class = "form-control"
+    _class = ""
     if @base.type?          then _class += " #{@base.type}"
     if @options.class?      then _class += " #{@options.class}"
     _class
@@ -91,7 +93,7 @@ class JoB.Form.TagHelper
     placeholder
 
   _valueAttribute: () ->
-    value = if _.isString(@options.value) or _.isBoolean(@options.value)
+    value = if _.isEmpty("#{@options.value}") is not true
       @options.value
     else if _.isObject(@base.ressource)
       if _.isFunction(@base.ressource.get)
@@ -104,7 +106,7 @@ class JoB.Form.TagHelper
 
   # responsible to
   _htmlAttributes: () ->
-    attributes = _.extend(@options, {
+    attributes = _.defaults(_.clone(@options), {
       class: @_classAttribute()
       name: @_nameAttribute()
       id: @_idAttribute()
@@ -113,7 +115,7 @@ class JoB.Form.TagHelper
       type: @base.type
     })
     delete attributes.placeholder if _.isEmpty(attributes.placeholder)
-    delete attributes.value if _.isEmpty(attributes.value)
+    delete attributes.value if _.isEmpty("#{attributes.value}")
     attributes
 
   _inputTag: () ->
@@ -122,9 +124,18 @@ class JoB.Form.TagHelper
   _genericTag: (tagName, content, options) ->
     new JoB.Lib.Tag().contentTag(tagName, content, options)
 
+  _radioButtonTag: () ->
+    if _.isEmpty(@options.class) then @options.class = "radio"
+    htmlAttributes = @_htmlAttributes()
+    new JoB.Lib.Tag().contentTag('input', null, htmlAttributes)
+
+  _checkBoxTag: () ->
+    if _.isEmpty(@options.class) then @options.class = "checkbox"
+    htmlAttributes = @_htmlAttributes()
+    new JoB.Lib.Tag().contentTag('input', null, htmlAttributes)
+
   _selectTag: (optionTags) ->
     attributes = @_htmlAttributes()
-    delete attributes.type
     delete attributes.type
     attributes.name = attributes.name + "[]" if attributes.multiple
     new JoB.Lib.Tag().contentTag('select', optionTags, attributes)
@@ -140,7 +151,7 @@ class JoB.Form.TagHelper
 
   _setOptions: (options) ->
     @options = null
-    @options = _.defaults(options, @defaults)
+    @options = _.defaults(options, _.clone(@defaults))
 
   _setup: (ressourceName, fieldName, inputType, options={}) ->
     @_setBase(ressourceName, fieldName, inputType)
@@ -149,6 +160,12 @@ class JoB.Form.TagHelper
   buttonTag: (content, options={}) ->
     @options = _.defaults({content: content}, options)
     @_genericTag('button', @options.content, @options)
+
+  checkBoxTag: (ressourceName, fieldName, checked, options={}) ->
+    options = _.defaults(options, {}) # checked: checked
+    options.checked = 'checked' if checked
+    @_setup(ressourceName, fieldName, 'checkbox', options)
+    @_checkBoxTag()
 
   dateFieldTag: (ressourceName, fieldName, options={}) ->
     @_setup(ressourceName, fieldName, 'date', options)
@@ -181,9 +198,9 @@ class JoB.Form.TagHelper
     @options = _.defaults(options, {src: src, type: 'image'})
     @_genericTag('input', null, @options)
 
-  labelTag: (forName, content, options={}) ->
-    @options = _.defaults(options, {for: forName, content: content})
-    @_genericTag('label', @options.content, @options)
+  labelTag: (ressourceName, fieldName, content, options={}) ->
+    @options = _.defaults(options, {for: @_idAttribute(ressourceName, fieldName)})
+    @_genericTag('label', content, @options)
 
   monthFieldTag: (ressourceName, fieldName, options={}) ->
     options = _.defaults(options, {min: 1, max: 100, step: 1})
@@ -206,7 +223,7 @@ class JoB.Form.TagHelper
   radioButtonTag: (ressourceName, fieldName, checked = false, options={}) ->
     options = _.defaults(options, {checked: checked})
     @_setup(ressourceName, fieldName, 'radio', options)
-    @_inputTag()
+    @_radioButtonTag()
 
   rangeFieldTag: (ressourceName, fieldName, options={}) ->
     options = _.defaults(options, {min: 0, max: 100, step: 1})

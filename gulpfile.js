@@ -58,8 +58,8 @@ gulp.task('server', function(){
   // App server
   http.createServer(
     ecstatic({ root: __dirname + '/' })
-  ).listen(8080);
-  console.log('Server listening on http://localhost:8080');
+  ).listen(8081);
+  console.log('Server listening on http://localhost:8081');
 });
 
 //////////////////////////////////////////
